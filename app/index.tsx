@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
+import PokemonCard from "../components/PokemonCard";
 
 export default function Index() {
   const [result, setResult] = useState<any[]>([]);
@@ -19,10 +20,16 @@ export default function Index() {
     setResult(data.results);
   };
   return (
-    <View>
-      {result.map((item)=>{
-        return <Text key={item.name}>{item.name}</Text>
-      })}
-    </View>
+    <ScrollView>
+      <View>
+        {result.map((pokemon) => (
+          <PokemonCard
+            key={pokemon.name}
+            name={pokemon.name}
+            url={pokemon.url}
+          />
+        ))}
+      </View>
+    </ScrollView>
   );
 }
